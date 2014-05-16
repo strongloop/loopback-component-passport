@@ -1,0 +1,47 @@
+{
+  "name": "loopback-passport",
+  "description": "LoopBack passport integration to support third party logins and account linking",
+  "keywords": [
+    "StrongLoop",
+    "LoopBack",
+    "social",
+    "login",
+    "security"
+  ],
+  "homepage": "https://github.com/strongloop/loopback-passport",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "maintainers": [
+    {
+      "name": "Raymond Feng",
+      "email": "raymond@strongloop.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/strongloop/loopback-passport/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strongloop/loopback-passport.git"
+  },
+  "dependencies": {
+    "passport": "~0.2.0"
+  },
+  "peerDependencies": {
+    "loopback": "1.x >=1.8.0"
+  },
+  "devDependencies": {
+    "loopback": "1.x >=1.8.0",
+    "mocha": "~1.18.2"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -R spec --timeout 10000 test/*.js"
+  },
+  "main": "./index.js",
+  "license": {
+    "name": "Dual Artistic-2.0/StrongLoop",
+    "url": "https://github.com/strongloop/loopback-passport/blob/master/LICENSE"
+  }
+}
