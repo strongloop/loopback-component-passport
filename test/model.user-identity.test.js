@@ -5,13 +5,13 @@ var UserIdentity = m.UserIdentity;
 var UserCredential = m.UserCredential;
 var User = loopback.User;
 
-before(function(done) {
+before(function (done) {
   User.destroyAll(done);
 });
 
 describe('UserIdentity', function () {
 
-  before(function() {
+  before(function () {
     var ds = loopback.createDataSource({
       connector: 'memory'
     });
@@ -85,6 +85,39 @@ describe('UserIdentity', function () {
             });
           });
       });
+    });
+  });
+
+  it('supports 3rd party login if user account already exists', function (done) {
+    User.create({
+      username: 'facebook.789',
+      email: '789@facebook.com',
+      password: 'pass'
+    }, function (err, user) {
+      UserIdentity.login('facebook', 'oAuth 2.0',
+        {emails: [
+          {value: '789@facebook.com'}
+        ], id: 'f789', username: 'ttt'
+        }, {accessToken: 'at3', refreshToken: 'rt3'}, function (err, user, identity) {
+          assert(!err, 'No error should be reported');
+          assert.equal(user.username, 'facebook.789');
+          assert.equal(user.email, '789@facebook.com');
+
+          assert.equal(identity.externalId, 'f789');
+          assert.equal(identity.provider, 'facebook');
+          assert.equal(identity.authScheme, 'oAuth 2.0');
+          assert.deepEqual(identity.credentials, {accessToken: 'at3', refreshToken: 'rt3'});
+
+          assert.equal(user.id, identity.userId);
+
+          // Follow the belongsTo relation
+          identity.user(function (err, user) {
+            assert(!err, 'No error should be reported');
+            assert.equal(user.username, 'facebook.789');
+            assert.equal(user.email, '789@facebook.com');
+            done();
+          });
+        });
     });
   });
 
