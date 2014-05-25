@@ -26,7 +26,7 @@ describe('UserIdentity', function () {
       {emails: [
         {value: 'foo@bar.com'}
       ], id: 'f123', username: 'xyz'
-      }, {accessToken: 'at1', refreshToken: 'rt1'}, function (err, user, identity) {
+      }, {accessToken: 'at1', refreshToken: 'rt1'}, function (err, user, identity, token) {
         assert(!err, 'No error should be reported');
         assert.equal(user.username, 'facebook.xyz');
         assert.equal(user.email, 'foo@bar.com');
@@ -37,6 +37,7 @@ describe('UserIdentity', function () {
         assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
 
         assert.equal(user.id, identity.userId);
+        assert(token);
 
         // Follow the belongsTo relation
         identity.user(function (err, user) {
@@ -64,7 +65,7 @@ describe('UserIdentity', function () {
           {emails: [
             {value: 'abc1@facebook.com'}
           ], id: 'f456', username: 'xyz'
-          }, {accessToken: 'at2', refreshToken: 'rt2'}, function (err, user, identity) {
+          }, {accessToken: 'at2', refreshToken: 'rt2'}, function (err, user, identity,token) {
             assert(!err, 'No error should be reported');
             assert.equal(user.username, 'facebook.abc');
             assert.equal(user.email, 'abc@facebook.com');
@@ -75,6 +76,8 @@ describe('UserIdentity', function () {
             assert.deepEqual(identity.credentials, {accessToken: 'at2', refreshToken: 'rt2'});
 
             assert.equal(user.id, identity.userId);
+
+            assert(token);
 
             // Follow the belongsTo relation
             identity.user(function (err, user) {
@@ -98,7 +101,7 @@ describe('UserIdentity', function () {
         {emails: [
           {value: '789@facebook.com'}
         ], id: 'f789', username: 'ttt'
-        }, {accessToken: 'at3', refreshToken: 'rt3'}, function (err, user, identity) {
+        }, {accessToken: 'at3', refreshToken: 'rt3'}, function (err, user, identity, token) {
           assert(!err, 'No error should be reported');
           assert.equal(user.username, 'facebook.789');
           assert.equal(user.email, '789@facebook.com');
@@ -109,6 +112,7 @@ describe('UserIdentity', function () {
           assert.deepEqual(identity.credentials, {accessToken: 'at3', refreshToken: 'rt3'});
 
           assert.equal(user.id, identity.userId);
+          assert(token);
 
           // Follow the belongsTo relation
           identity.user(function (err, user) {
@@ -119,6 +123,41 @@ describe('UserIdentity', function () {
           });
         });
     });
+  });
+
+  it('supports 3rd party login with profileToUser option', function (done) {
+    UserIdentity.login('facebook', 'oAuth 2.0',
+      {emails: [
+        {value: 'foo@baz.com'}
+      ], id: 'f100', username: 'joy'
+      }, {accessToken: 'at1', refreshToken: 'rt1'}, {
+        profileToUser: function (provider, profile) {
+          return {
+            username: profile.username + '@facebook',
+            email: profile.emails[0].value,
+            password: 'sss'
+          };
+        }}, function (err, user, identity, token) {
+        assert(!err, 'No error should be reported');
+        assert.equal(user.username, 'joy@facebook');
+        assert.equal(user.email, 'foo@baz.com');
+
+        assert.equal(identity.externalId, 'f100');
+        assert.equal(identity.provider, 'facebook');
+        assert.equal(identity.authScheme, 'oAuth 2.0');
+        assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
+
+        assert.equal(user.id, identity.userId);
+        assert(token);
+
+        // Follow the belongsTo relation
+        identity.user(function (err, user) {
+          assert(!err, 'No error should be reported');
+          assert.equal(user.username, 'joy@facebook');
+          assert.equal(user.email, 'foo@baz.com');
+          done();
+        });
+      });
   });
 
 });
