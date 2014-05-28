@@ -1,0 +1,8 @@
+{
+  "title": "LoopBack Passport Integration",
+  "content": [
+    "lib/models/application-credential.js",
+    "lib/models/user-identity.js",
+    "lib/passport-configurator.js"
+  ]
+}
