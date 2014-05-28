@@ -26,7 +26,9 @@ describe('UserIdentity', function () {
       {emails: [
         {value: 'foo@bar.com'}
       ], id: 'f123', username: 'xyz'
-      }, {accessToken: 'at1', refreshToken: 'rt1'}, function (err, user, identity, token) {
+      }, {accessToken: 'at1', refreshToken: 'rt1'},
+      {autoLogin: false},
+      function (err, user, identity, token) {
         assert(!err, 'No error should be reported');
         assert.equal(user.username, 'facebook.xyz');
         assert.equal(user.email, 'foo@bar.com');
@@ -37,7 +39,7 @@ describe('UserIdentity', function () {
         assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
 
         assert.equal(user.id, identity.userId);
-        assert(token);
+        assert(!token);
 
         // Follow the belongsTo relation
         identity.user(function (err, user) {
