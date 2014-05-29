@@ -180,7 +180,7 @@ client secret.
 
 ## Add code snippets to app.js
 
-```
+```js
 var loopback = require('loopback');
 var path = require('path');
 var app = module.exports = loopback();
