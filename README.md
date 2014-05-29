@@ -85,27 +85,47 @@ PassportConfigurator is the bridge between LoopBack and Passport.
 
 - set up models with LoopBack
 - initialize passport
-- load the provider configuration and set them as Passport strategies with 
-corresponding routes for auth and callback. 
+- create Passport strategies from provider configurations
+- set up routes for auth and callback 
 
 # Flows
 
 ## Third party login flow
 
-1. A visitor uses Facebook (or other providers) login
-2. LoopBack receives the Facebook profile
-3. LoopBack searches the UserIdentity model by (provider, externalId) to see 
+The following steps use Facebook oAuth 2.0 login as an example.
+
+1. A visitor requests to log in using Facebook (or other providers), typically 
+by clicking on a link or button backed by LoopBack to kick off oAuth 2.0 
+authorization code flow
+2. LoopBack redirects the browser to Facebook's authorization endpoint so that
+the user can log into Facebook and grant permissions to LoopBack
+3. Facebook redirects the browser to a callback URL hosted by LoopBack 
+with the oAuth 2.0 authorization code
+4. LoopBack makes a request to the Facebook token endpoint to get an access 
+token using the authorization code 
+5. LoopBack uses the access token to retrieve the user's Facebook profile
+6. LoopBack searches the UserIdentity model by (provider, externalId) to see 
 there is an existing LoopBack user for the given Facebook id
-4. If yes, set the LoopBack user to the current context
-5. If not, create a LoopBack user from the profile and create a corresponding 
+7. If yes, set the LoopBack user to the current context
+8. If not, create a LoopBack user from the profile and create a corresponding 
 record in UserIdentity to track the 3rd party login. Set the newly created user 
 to the current context.
 
 ## Third party account linking flow
 
-1. Log into LoopBack first
-2. Access a backend on behalf of the logged in LoopBack user
-3. Link accounts for a given backend to the current user
+The following steps use Facebook oAuth 2.0 login as an example.
+
+1. The user log into LoopBack first directly or through third party login
+2. The user clicks on a link or button by LoopBack to kick off oAuth 2.0 
+authorization code flow so that the user can grant permissions to LoopBack
+3. Perform the same steps 2-5 as third party login 
+4. LoopBack searches the UserCredential model by (provider, externalId) to see 
+   there is an existing LoopBack user for the given Facebook id
+5. Link the Facebook account to the current user by creating a record in the
+UserCredential model to store the Facebook credentials, such as access token
+6. Now the LoopBack user wants to get a list of pictures from the linked Facebook
+account(s). LoopBack can look up the Facebook credentials associated with the 
+current user and use them to call Facebook APIs to retrieve the pictures. 
 
 # Use the module with a LoopBack application
 
