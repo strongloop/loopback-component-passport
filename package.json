@@ -30,7 +30,7 @@
     "passport": "~0.2.0"
   },
   "peerDependencies": {
-    "loopback": "1.x >=1.8.0"
+    "loopback": "2.x || 1.x >=1.8.0"
   },
   "devDependencies": {
     "loopback": "1.x >=1.8.0",
