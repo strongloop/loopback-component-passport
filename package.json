@@ -27,7 +27,8 @@
     "url": "git://github.com/strongloop/loopback-passport.git"
   },
   "dependencies": {
-    "passport": "~0.2.0"
+    "passport": "~0.2.0",
+    "underscore": "^1.6.0"
   },
   "peerDependencies": {
     "loopback": "2.x || 1.x >=1.8.0"
