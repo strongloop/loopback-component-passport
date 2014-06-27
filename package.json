@@ -9,7 +9,7 @@
     "security"
   ],
   "homepage": "https://github.com/strongloop/loopback-passport",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -27,10 +27,11 @@
     "url": "git://github.com/strongloop/loopback-passport.git"
   },
   "dependencies": {
-    "passport": "~0.2.0"
+    "passport": "~0.2.0",
+    "underscore": "^1.6.0"
   },
   "peerDependencies": {
-    "loopback": "1.x >=1.8.0"
+    "loopback": "2.x || 1.x >=1.8.0"
   },
   "devDependencies": {
     "loopback": "1.x >=1.8.0",
