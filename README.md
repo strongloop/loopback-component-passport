@@ -1,4 +1,6 @@
-# loopback-passport
+# LoopBack Passport Component
+
+**NOTE: The loopback-component-passport module supersedes [loopback-passport](https://www.npmjs.org/package/loopback-passport). Please update your package.json accordingly.**
 
 The module provides integration between [LoopBack](http://loopback.io) and 
 [Passport](http://passportjs.org) to support third party login and account 
@@ -186,7 +188,7 @@ var path = require('path');
 var app = module.exports = loopback();
 
 // Create an instance of PassportConfigurator with the app instance
-var PassportConfigurator = require('loopback-passport').PassportConfigurator;
+var PassportConfigurator = require('loopback-component-passport').PassportConfigurator;
 var passportConfigurator = new PassportConfigurator(app);
 
 app.boot(__dirname);

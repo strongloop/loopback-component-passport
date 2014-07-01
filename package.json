@@ -1,5 +1,5 @@
 {
-  "name": "loopback-passport",
+  "name": "loopback-component-passport",
   "description": "LoopBack passport integration to support third party logins and account linking",
   "keywords": [
     "StrongLoop",
@@ -8,7 +8,7 @@
     "login",
     "security"
   ],
-  "homepage": "https://github.com/strongloop/loopback-passport",
+  "homepage": "https://github.com/strongloop/loopback-component-passport",
   "version": "1.0.2",
   "engines": {
     "node": ">=0.10.0"
@@ -20,11 +20,11 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/strongloop/loopback-passport/issues"
+    "url": "https://github.com/strongloop/loopback-component-passport/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/strongloop/loopback-passport.git"
+    "url": "git://github.com/strongloop/loopback-component-passport.git"
   },
   "dependencies": {
     "passport": "~0.2.0",
@@ -43,6 +43,6 @@
   "main": "./lib/index.js",
   "license": {
     "name": "Dual Artistic-2.0/StrongLoop",
-    "url": "https://github.com/strongloop/loopback-passport/blob/master/LICENSE"
+    "url": "https://github.com/strongloop/loopback-component-passport/blob/master/LICENSE"
   }
 }
