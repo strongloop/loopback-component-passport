@@ -9,7 +9,7 @@
     "security"
   ],
   "homepage": "https://github.com/strongloop/loopback-component-passport",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "loopback": "1.x >=1.8.0",
-    "mocha": "~1.18.2"
+    "mocha": "~1.20.1"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha -R spec --timeout 10000 test/*.js"
