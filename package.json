@@ -31,10 +31,10 @@
     "underscore": "^1.6.0"
   },
   "peerDependencies": {
-    "loopback": "2.x || 1.x >=1.8.0"
+    "loopback": "2.x"
   },
   "devDependencies": {
-    "loopback": "1.x >=1.8.0",
+    "loopback": "2.x",
     "mocha": "~1.20.1"
   },
   "scripts": {
