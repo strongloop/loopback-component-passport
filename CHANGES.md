@@ -1,3 +1,15 @@
+2015-01-09, Version 1.1.1
+=========================
+
+ * Add timestamp (Raymond Feng)
+
+ * AuthInfo must be enabled in order to pass the token on. (csvan)
+
+ * Enable option for creating access token in conjunction with local login. (csvan)
+
+ * Fix bad CLA URL in CONTRIBUTING.md (Ryan Graham)
+
+
 2014-11-21, Version 1.1.0
 =========================
 
