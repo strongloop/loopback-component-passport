@@ -1,3 +1,9 @@
+2015-01-14, Version 1.1.2
+=========================
+
+ * allow custom loginCallback function (Clark Wang)
+
+
 2015-01-09, Version 1.1.1
 =========================
 
