@@ -1,4 +1,16 @@
-2015-01-14, Version 1.1.2
+2015-03-09, Version 1.2.0
+=========================
+
+ * Update deps (Raymond Feng)
+
+ * resolves inconsistency of info.accessToken.ttl (which is in seconds) and maxAge of res.cookie (which is in milliseconds) (Andrey Loukhnov)
+
+ * support use of custom function for creating access token (Vine Brancho)
+
+ * added support for username and email for logging in with local auth strategy (britztopher)
+
+
+2015-01-13, Version 1.1.2
 =========================
 
  * allow custom loginCallback function (Clark Wang)
