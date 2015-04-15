@@ -8,4 +8,4 @@ linking for LoopBack applications.
 
 <img src="./ids_and_credentials.png" width="600px" />
 
-> Please see the [complete documentation](http://docs.strongloop.com/display/LB/Third-party+login) for more information.
+> Please see the [complete documentation](http://docs.strongloop.com/pages/releaseview.action?pageId=3836277) for more information.
