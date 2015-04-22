@@ -1,4 +1,16 @@
-2015-03-09, Version 1.2.0
+2015-04-22, Version 1.3.0
+=========================
+
+ * Update README.md (Rand McKinney)
+
+ * 401 instead of redirect to failure (Pierre Gambarotto)
+
+ * rename variables to camlCase form (Pierre Gambarotto)
+
+ * ldap authentication (Pierre Gambarotto)
+
+
+2015-03-08, Version 1.2.0
 =========================
 
  * Update deps (Raymond Feng)
