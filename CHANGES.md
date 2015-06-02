@@ -1,3 +1,11 @@
+2015-06-02, Version 1.3.1
+=========================
+
+ * Fix the maxAge for cookies (Raymond Feng)
+
+ * Reformat code (Raymond Feng)
+
+
 2015-04-22, Version 1.3.0
 =========================
 
