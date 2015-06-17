@@ -1,3 +1,9 @@
+2015-06-17, Version 1.4.0
+=========================
+
+ * Make email optional (Berkeley Martinez)
+
+
 2015-06-02, Version 1.3.1
 =========================
 
