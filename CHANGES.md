@@ -1,3 +1,13 @@
+2015-06-24, Version 1.5.0
+=========================
+
+ * Register passport with session:after phase (Raymond Feng)
+
+ * Make sure passport is registered with session phase (Raymond Feng)
+
+ * Error condition would yield multiple callbacks (Jonathan Sheely)
+
+
 2015-06-17, Version 1.4.0
 =========================
 
