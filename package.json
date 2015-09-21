@@ -41,8 +41,5 @@
     "test": "./node_modules/.bin/mocha -R spec --timeout 10000 test/*.js"
   },
   "main": "./lib/index.js",
-  "license": {
-    "name": "Dual Artistic-2.0/StrongLoop",
-    "url": "https://github.com/strongloop/loopback-component-passport/blob/master/LICENSE"
-  }
+  "license": "Artistic-2.0"
 }
