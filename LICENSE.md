@@ -1,3 +1,5 @@
+Copyright (c) 2013-2015 StrongLoop, Inc.
+
 loopback-component-passport uses a dual license model.
 
 You may use this library under the terms of the [Artistic 2.0 license][],
