@@ -1,3 +1,27 @@
+2015-11-04, Version 1.6.0
+=========================
+
+ * Refer to licenses with a link (Sam Roberts)
+
+ * Use strongloop conventions for licensing (Sam Roberts)
+
+ * feature add failureFlash on link errors (Berkeley Martinez)
+
+ * limit options to post and get and default to get (Jose Garcia)
+
+ * customize callback HTTP method (Jose Garcia)
+
+ * session.redirectTo erase after successful redirect (liba)
+
+ * adding dynamic redirect after successful login (liba)
+
+ * Fixed suspected typo in passport-configurator (Samuel Gaus)
+
+ * Customize cookie for use with subdomain (Pongstr)
+
+ * compatible with wechat's openid (Yorkie Liu)
+
+
 2015-06-24, Version 1.5.0
 =========================
 
