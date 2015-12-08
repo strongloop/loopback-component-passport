@@ -18,7 +18,12 @@ with
 ```
 which will allow the user to link the social media accounts that they want as well as the users could sign up with 4 different accounts using the same email for facebook/twitter/google/local if they wish to keep them separate. 
 
-###Assuming the client wants to get more info from the facebook profile or google profile. For example, the client modifies node_modules\passport-facebook\lib\strategy.js to use 
-
-'https://graph.facebook.com/v2.2/me?fields=first_name,gender,last_name,link,locale,name,timezone,verified,email,updated_time'
-they can get all user required info including the email, but the main email for the account will remain "uniqueID@loopback.faceboo.com"
+###If info is required from the from the Facebook such as email, it could still be obtained. In node_modules\passport-facebook\lib\strategy.js , replace 
+```
+this._profileURL = options.profileURL || 'https://graph.facebook.com/me';
+```
+with 
+```
+this._profileURL = options.profileURL ||'https://graph.facebook.com/v2.2/me?fields=first_name,gender,last_name,link,locale,name,timezone,verified,email,updated_time'
+```
+All user required info including the email will be available, but the main email for the account will remain "uniqueID@loopback.facebook.com"
