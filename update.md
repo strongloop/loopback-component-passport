@@ -1,10 +1,7 @@
 <<<<<<< HEAD
 # In order NOT to have 2 accounts with duplicate emails 
 **Third party accounts will login with an email of "uniqueID@loopback.provider.com" example "123456@loopback.twitter.com" 
-=======
-# All local accounts requires verification. 
-###In order to let third party accounts to login with an email of "uniqueID@loopback.provider.com" example "123456@loopback.twitter.com" 
->>>>>>> b545028ba46ec06f6e8d8c4d3079ed99c4b9fb93
+
 
 > In .lib/models/user-identity.js
 is replaced 
@@ -23,11 +20,9 @@ with
 ```
 which will allow the user to link the social media accounts that they want as well as the users could sign up with 4 different accounts using the same email for facebook/twitter/google/local if they wish to keep them separate. 
 
-<<<<<<< HEAD
+
 **If info is required from the from the Facebook such as email, it could still be obtained. In node_modules\passport-facebook\lib\strategy.js , replace 
-=======
-###If info is required from the from the Facebook such as email, it could still be obtained. In node_modules\passport-facebook\lib\strategy.js , replace 
->>>>>>> b545028ba46ec06f6e8d8c4d3079ed99c4b9fb93
+
 ```
 this._profileURL = options.profileURL || 'https://graph.facebook.com/me';
 ```
