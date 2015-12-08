@@ -1,4 +1,4 @@
-### All local accounts requires verification. 
+# All local accounts requires verification. 
 ###In order to let third party accounts to login with an email of "uniqueID@loopback.provider.com" example "123456@loopback.twitter.com" 
 
 > In .lib/models/user-identity.js
