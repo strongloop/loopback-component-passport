@@ -9,7 +9,7 @@
     "security"
   ],
   "homepage": "https://github.com/strongloop/loopback-component-passport",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "engines": {
     "node": ">=0.10.0"
   },
