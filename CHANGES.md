@@ -1,3 +1,13 @@
+2016-01-11, Version 2.0.0
+=========================
+
+ * Fix version Number Revert to proper version number (Loay Gewily)
+
+ * Use Auto-generated email Using auto-generated email for 3rd party accounts & update version# (Loay Gewily)
+
+ * Enforce email verification for local accounts (Loay Gewily)
+
+
 2015-11-04, Version 1.6.0
 =========================
 
