@@ -14,7 +14,7 @@ describe('UserIdentity', function () {
     var ds = loopback.createDataSource({
       connector: 'memory'
     });
-    
+
     UserIdentity.attachTo(ds);
     User.attachTo(ds);
     UserIdentity.belongsTo(User);
@@ -30,7 +30,7 @@ describe('UserIdentity', function () {
       function (err, user, identity, token) {
         assert(!err, 'No error should be reported');
         assert.equal(user.username, 'facebook.xyz');
-        assert.equal(user.email, 'foo@bar.com');
+        assert.equal(user.email, 'xyz@loopback.facebook.com');
 
         assert.equal(identity.externalId, 'f123');
         assert.equal(identity.provider, 'facebook');
@@ -44,7 +44,7 @@ describe('UserIdentity', function () {
         identity.user(function (err, user) {
           assert(!err, 'No error should be reported');
           assert.equal(user.username, 'facebook.xyz');
-          assert.equal(user.email, 'foo@bar.com');
+          assert.equal(user.email, 'xyz@loopback.facebook.com');
           done();
         });
       });
@@ -104,8 +104,8 @@ describe('UserIdentity', function () {
         ], id: 'f789', username: 'ttt'
         }, {accessToken: 'at3', refreshToken: 'rt3'}, function (err, user, identity, token) {
           assert(!err, 'No error should be reported');
-          assert.equal(user.username, 'facebook.789');
-          assert.equal(user.email, '789@facebook.com');
+          assert.equal(user.username, 'facebook.ttt');
+          assert.equal(user.email, 'ttt@loopback.facebook.com');
 
           assert.equal(identity.externalId, 'f789');
           assert.equal(identity.provider, 'facebook');
@@ -118,8 +118,8 @@ describe('UserIdentity', function () {
           // Follow the belongsTo relation
           identity.user(function (err, user) {
             assert(!err, 'No error should be reported');
-            assert.equal(user.username, 'facebook.789');
-            assert.equal(user.email, '789@facebook.com');
+            assert.equal(user.username, 'facebook.ttt');
+            assert.equal(user.email, 'ttt@loopback.facebook.com');
             done();
           });
         });
