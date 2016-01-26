@@ -161,4 +161,35 @@ describe('UserIdentity', function () {
       });
   });
 
+  it('supports ldap login', function(done) {
+    var identity = { emails: [{value: 'fooldap@bar.com'}], id: 'f123ldap',
+     username: 'xyzldap'};
+    var credentials = {accessToken: 'atldap1', refreshToken: 'rtldap1'};
+    var options = {autoLogin: false};
+    UserIdentity.login('ldap', 'ldap', identity, credentials, options,
+       function(err, user, identity, token) {
+    if (err) return done(err);
+
+    assert.equal(user.username, 'ldap.xyzldap');
+    assert.equal(user.email, 'fooldap@bar.com');
+
+    assert.equal(identity.externalId, 'f123ldap');
+    assert.equal(identity.provider, 'ldap');
+    assert.deepEqual(identity.credentials, {accessToken: 'atldap1',
+       refreshToken: 'rtldap1'});
+
+    assert.equal(user.id, identity.userId);
+    assert(!token);
+
+        // Follow the belongsTo relation
+        identity.user(function(err, user) {
+          if (err) return done(err);
+
+          assert.equal(user.username, 'ldap.xyzldap');
+          assert.equal(user.email, 'fooldap@bar.com');
+          
+          done();
+        });
+      });
+  });
 });
