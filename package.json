@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "passport": "^0.2.1",
-    "underscore": "^1.8.2"
+    "underscore": "^1.8.2",
+    "underscore.string": "^3.2.2"
   },
   "peerDependencies": {
     "loopback": "2.x || 1.x >=1.8.0"
