@@ -1,3 +1,21 @@
+2016-03-18, Version 2.1.0
+=========================
+
+ * Update deps (Raymond Feng)
+
+ * Fix email validation for LDAP issue 1963 (Loay Gewily)
+
+ * Fix getting AuthStrategy directly from package when Strategy key is not here (Steve Grosbois)
+
+ * Make `username` field optional in UserIdentity.login method (Vladimir Shushkov)
+
+ * Throw softer error in `local` stragegy when trying to create `accessToken` with `"setAccessToken": true` option. In case when reason is wrong user password. (Vladimir Shushkov)
+
+ * The name of provider can be configured in options. (Clark Wang)
+
+ * Avoid duplicate user identities (Clark Wang)
+
+
 2016-01-11, Version 2.0.0
 =========================
 
