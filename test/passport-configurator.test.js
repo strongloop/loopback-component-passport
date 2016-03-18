@@ -51,7 +51,6 @@ describe('PassportConfigurator', function() {
         },
       },
     };
-
     /* user's ldap attributes */
     var userFromLdap = {
       uid: 'john-doe-uid',
@@ -105,4 +104,5 @@ describe('PassportConfigurator', function() {
     assert.equal(profile.id, userFromLdap.uid, '"id" should take value of "uid"');
     done();
   });
+
 });
