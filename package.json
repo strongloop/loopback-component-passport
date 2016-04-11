@@ -28,14 +28,18 @@
   },
   "dependencies": {
     "passport": "^0.3.2",
-    "underscore": "^1.8.2"
+    "underscore": "^1.8.2",
+    "eslint": "^2.5.3",
+    "eslint-config-loopback": "^1.0.0"
   },
   "devDependencies": {
     "loopback": "^2.14.0",
     "mocha": "^2.2.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha -R spec --timeout 10000 test/*.js"
+    "lint": "eslint .",
+    "test": "./node_modules/.bin/mocha -R spec --timeout 10000 test/*.js",
+    "posttest": "npm run lint"
   },
   "main": "./lib/index.js",
   "license": "Artistic-2.0"
