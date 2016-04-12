@@ -3,14 +3,14 @@ module.exports = require('../lib/index');
 
 // setup default data sources
 loopback.setDefaultDataSourceForType('db', {
-  connector: loopback.Memory
+  connector: loopback.Memory,
 });
 
 loopback.setDefaultDataSourceForType('mail', {
   connector: loopback.Mail,
   transports: [
-    {type: 'STUB'}
-  ]
+    { type: 'STUB' },
+  ],
 });
 
 // auto attach data sources to models
