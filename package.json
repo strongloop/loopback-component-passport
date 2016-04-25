@@ -34,7 +34,10 @@
   },
   "devDependencies": {
     "loopback": "^2.14.0",
-    "mocha": "^2.2.0"
+    "mocha": "^2.2.0",
+    "mock-require": "^1.2.1",
+    "sinon": "^1.17.3",
+    "supertest": "^1.2.0"
   },
   "scripts": {
     "lint": "eslint .",
