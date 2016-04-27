@@ -1,6 +1,4 @@
-
 var loopback = require('loopback');
-var app = loopback();
 var m = require('./init');
 var mock = require('mock-require');
 var PassportConfigurator = require('../lib/passport-configurator.js');
@@ -9,10 +7,15 @@ var assert = require('assert');
 var request = require('supertest');
 var sinon = require('sinon');
 
-describe('Login failure', function() {
+describe('login failure', function() {
   var passportAuthenticate;
+  var app;
 
-  before('Configure facebook strategy', function() {
+  before('set up loopback app', function() {
+    app = loopback();
+  });
+
+  before('configure facebook strategy', function() {
     var passportConfigurator = new PassportConfigurator(app);
 
     //mock a strategy to work with
@@ -34,7 +37,7 @@ describe('Login failure', function() {
     passportConfigurator.configureProvider('facebook-login', options);
   });
 
-  afterEach('Cleanup mocks', function() {
+  afterEach('cleanup mocks', function() {
     if (passportAuthenticate) passportAuthenticate.restore();
   });
 
@@ -62,8 +65,14 @@ describe('Login failure', function() {
   });
 });
 
-describe('Link failure', function() {
-  before('Setup facebook strategy', function() {
+describe('link failure', function() {
+  var app;
+
+  before('set up loopback app', function() {
+    app = loopback();
+  });
+
+  before('setup facebook strategy', function() {
     var passportConfigurator = new PassportConfigurator(app);
     var linkOptions = {
       'provider': 'facebook',
