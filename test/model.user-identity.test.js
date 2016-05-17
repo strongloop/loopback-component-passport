@@ -239,4 +239,59 @@ describe('UserIdentity', function() {
       done();
     });
   });
+
+  describe('emailOptional set to false', function(err) {
+    it('creates a user when given an email address', function(done) {
+      var username = 'fbu123';
+      UserIdentity.login('facebook', 'oAuth 2.0', {
+        email: 'abc123@example.com',
+        id: 'fbi123',
+        username: username,
+      }, {
+        accessToken: 'at1',
+        refreshToken: 'rt1',
+      }, {
+        emailOptional: false,
+        profileToUser: customProfileToUser,
+      }, function(err, user, identity, token) {
+        if (err) return done(err);
+        assert.equal(user.username, username);
+        done();
+      });
+    });
+
+    it('does not create a user if an email address was not given', function(done) {
+      User.count(function(err, countBefore) {
+        if (err) return done(err);
+        UserIdentity.login('facebook', 'oAuth 2.0', {
+          id: 'fbi234',
+          username: 'fbu234',
+        }, {
+          accessToken: 'at2',
+          refreshToken: 'rt2',
+        }, {
+          emailOptional: false,
+          profileToUser: customProfileToUser,
+        }, function(err, user, identity, token) {
+          assert(err.match(/email is missing/), 'Should report error');
+          assert(typeof user === 'undefined', 'Should not return a user instance');
+          User.count(function(err, countAfter) {
+            if (err) return done(err);
+            assert.equal(countBefore, countAfter,
+              'Expected user count after execution to remain the same');
+            done();
+          });
+        });
+      });
+    });
+
+    function customProfileToUser(provider, profile, options) {
+      var userInfo = {
+        username: profile.username,
+        password: 'secret',
+        email: profile.email,
+      };
+      return userInfo;
+    }
+  });
 });
