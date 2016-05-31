@@ -51,6 +51,7 @@ describe('PassportConfigurator', function() {
         },
       },
     };
+
     /* user's ldap attributes */
     var userFromLdap = {
       uid: 'john-doe-uid',
