@@ -47,43 +47,26 @@ describe('PassportConfigurator', function() {
           displayName: 'displayName',
           email: 'mail',
           externalId: 'uid',
-<<<<<<< HEAD
           id: 'uid',
         },
       },
     };
-=======
-          id: 'uid'
-        }
-      }
-    }
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
 
     /* user's ldap attributes */
     var userFromLdap = {
       uid: 'john-doe-uid',
       displayName: 'John Doe',
-<<<<<<< HEAD
       mail: 'john.doe@somewhere.sw',
-=======
-      mail: 'john.doe@somewhere.sw'
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
     };
     var profile = passportConfigurator._buildUserLdapProfile(userFromLdap, providerConfig.ldap);
 
     assert.equal(profile.login, userFromLdap.uid, '"login" should take value of "uid"');
     assert.equal(profile.username, userFromLdap.uid, '"username" should take value of "uid"');
-<<<<<<< HEAD
     assert.equal(profile.displayName, userFromLdap.displayName,
       '"displayName" should take value of "displayName"');
     assert.equal(profile.email, userFromLdap.mail, '"email" should take value of "mail"');
     assert.deepEqual(profile.emails, [{ value: userFromLdap.mail }],
       '"emails" should be comptued from "mail"');
-=======
-    assert.equal(profile.displayName, userFromLdap.displayName, '"displayName" should take value of "displayName"');
-    assert.equal(profile.email, userFromLdap.mail, '"email" should take value of "mail"');
-    assert.deepEqual(profile.emails, [{value: userFromLdap.mail}], '"emails" should be comptued from "mail"');
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
     assert.equal(profile.externalId, userFromLdap.uid, '"externalId" should take value of "uid"');
     done();
   });
@@ -101,43 +84,25 @@ describe('PassportConfigurator', function() {
         failureFlash: true,
         profileAttributesFromLDAP: {
           // empty mapping
-<<<<<<< HEAD
         },
       },
     };
-=======
-        }
-      }
-    }
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
 
     /* user's ldap attributes */
     var userFromLdap = {
       cn: 'John Doe',
       uid: 'john-doe-uid',
       displayName: 'John Doe',
-<<<<<<< HEAD
       mail: 'john.doe@somewhere.sw',
-=======
-      mail: 'john.doe@somewhere.sw'
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
     };
     var profile = passportConfigurator._buildUserLdapProfile(userFromLdap, providerConfig.ldap);
 
     // 3 ldap attributes are required in profile: username, emails, id.
     // They should be present even if not defiend in Ldap mapping, set to default Ldap attributes
     assert.equal(profile.username, userFromLdap.cn, '"username" should take value of "cn"');
-<<<<<<< HEAD
     assert.deepEqual(profile.emails, [{ value: userFromLdap.mail }],
       '"emails" should be comptued from "mail"');
     assert.equal(profile.id, userFromLdap.uid, '"id" should take value of "uid"');
     done();
   });
-=======
-    assert.deepEqual(profile.emails, [{value: userFromLdap.mail}], '"emails" should be comptued from "mail"');
-    assert.equal(profile.id, userFromLdap.uid, '"id" should take value of "uid"');
-    done();
-  });
-
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
 });
