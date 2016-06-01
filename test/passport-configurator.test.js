@@ -49,15 +49,19 @@ describe('PassportConfigurator', function() {
           externalId: 'uid',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 2.1.0
 =======
 >>>>>>> 2.1.0
+=======
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
           id: 'uid',
         },
       },
     };
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -70,11 +74,14 @@ describe('PassportConfigurator', function() {
 >>>>>>> 2.1.0
 =======
 >>>>>>> 2.1.0
+=======
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
 
     /* user's ldap attributes */
     var userFromLdap = {
       uid: 'john-doe-uid',
       displayName: 'John Doe',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       mail: 'john.doe@somewhere.sw',
@@ -88,6 +95,9 @@ describe('PassportConfigurator', function() {
 =======
       mail: 'john.doe@somewhere.sw',
 >>>>>>> 2.1.0
+=======
+      mail: 'john.doe@somewhere.sw',
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
     };
     var profile = passportConfigurator._buildUserLdapProfile(userFromLdap, providerConfig.ldap);
 
@@ -95,16 +105,20 @@ describe('PassportConfigurator', function() {
     assert.equal(profile.username, userFromLdap.uid, '"username" should take value of "uid"');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 2.1.0
 =======
 >>>>>>> 2.1.0
+=======
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
     assert.equal(profile.displayName, userFromLdap.displayName,
       '"displayName" should take value of "displayName"');
     assert.equal(profile.email, userFromLdap.mail, '"email" should take value of "mail"');
     assert.deepEqual(profile.emails, [{ value: userFromLdap.mail }],
       '"emails" should be comptued from "mail"');
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -116,6 +130,8 @@ describe('PassportConfigurator', function() {
 >>>>>>> 2.1.0
 =======
 >>>>>>> 2.1.0
+=======
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
     assert.equal(profile.externalId, userFromLdap.uid, '"externalId" should take value of "uid"');
     done();
   });
@@ -135,6 +151,7 @@ describe('PassportConfigurator', function() {
           // empty mapping
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         },
       },
     };
@@ -154,12 +171,18 @@ describe('PassportConfigurator', function() {
       },
     };
 >>>>>>> 2.1.0
+=======
+        },
+      },
+    };
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
 
     /* user's ldap attributes */
     var userFromLdap = {
       cn: 'John Doe',
       uid: 'john-doe-uid',
       displayName: 'John Doe',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       mail: 'john.doe@somewhere.sw',
@@ -173,6 +196,9 @@ describe('PassportConfigurator', function() {
 =======
       mail: 'john.doe@somewhere.sw',
 >>>>>>> 2.1.0
+=======
+      mail: 'john.doe@somewhere.sw',
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
     };
     var profile = passportConfigurator._buildUserLdapProfile(userFromLdap, providerConfig.ldap);
 
@@ -181,16 +207,20 @@ describe('PassportConfigurator', function() {
     assert.equal(profile.username, userFromLdap.cn, '"username" should take value of "cn"');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 2.1.0
 =======
 >>>>>>> 2.1.0
+=======
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
     assert.deepEqual(profile.emails, [{ value: userFromLdap.mail }],
       '"emails" should be comptued from "mail"');
     assert.equal(profile.id, userFromLdap.uid, '"id" should take value of "uid"');
     done();
   });
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -204,4 +234,6 @@ describe('PassportConfigurator', function() {
 >>>>>>> 2.1.0
 =======
 >>>>>>> 2.1.0
+=======
+>>>>>>> 551a2ffbb4a52b33f442f01648b2dca9dd0c45a2
 });
