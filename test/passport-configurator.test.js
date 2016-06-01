@@ -47,75 +47,26 @@ describe('PassportConfigurator', function() {
           displayName: 'displayName',
           email: 'mail',
           externalId: 'uid',
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 2.1.0
-=======
->>>>>>> 2.1.0
           id: 'uid',
         },
       },
     };
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-          id: 'uid'
-        }
-      }
-    }
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
->>>>>>> 2.1.0
-=======
->>>>>>> 2.1.0
 
     /* user's ldap attributes */
     var userFromLdap = {
       uid: 'john-doe-uid',
       displayName: 'John Doe',
-<<<<<<< HEAD
-<<<<<<< HEAD
       mail: 'john.doe@somewhere.sw',
-=======
-<<<<<<< HEAD
-      mail: 'john.doe@somewhere.sw',
-=======
-      mail: 'john.doe@somewhere.sw'
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
->>>>>>> 2.1.0
-=======
-      mail: 'john.doe@somewhere.sw',
->>>>>>> 2.1.0
     };
     var profile = passportConfigurator._buildUserLdapProfile(userFromLdap, providerConfig.ldap);
 
     assert.equal(profile.login, userFromLdap.uid, '"login" should take value of "uid"');
     assert.equal(profile.username, userFromLdap.uid, '"username" should take value of "uid"');
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 2.1.0
-=======
->>>>>>> 2.1.0
     assert.equal(profile.displayName, userFromLdap.displayName,
       '"displayName" should take value of "displayName"');
     assert.equal(profile.email, userFromLdap.mail, '"email" should take value of "mail"');
     assert.deepEqual(profile.emails, [{ value: userFromLdap.mail }],
       '"emails" should be comptued from "mail"');
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-    assert.equal(profile.displayName, userFromLdap.displayName, '"displayName" should take value of "displayName"');
-    assert.equal(profile.email, userFromLdap.mail, '"email" should take value of "mail"');
-    assert.deepEqual(profile.emails, [{value: userFromLdap.mail}], '"emails" should be comptued from "mail"');
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
->>>>>>> 2.1.0
-=======
->>>>>>> 2.1.0
     assert.equal(profile.externalId, userFromLdap.uid, '"externalId" should take value of "uid"');
     done();
   });
@@ -133,75 +84,25 @@ describe('PassportConfigurator', function() {
         failureFlash: true,
         profileAttributesFromLDAP: {
           // empty mapping
-<<<<<<< HEAD
-<<<<<<< HEAD
         },
       },
     };
-=======
-<<<<<<< HEAD
-        },
-      },
-    };
-=======
-        }
-      }
-    }
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
->>>>>>> 2.1.0
-=======
-        },
-      },
-    };
->>>>>>> 2.1.0
 
     /* user's ldap attributes */
     var userFromLdap = {
       cn: 'John Doe',
       uid: 'john-doe-uid',
       displayName: 'John Doe',
-<<<<<<< HEAD
-<<<<<<< HEAD
       mail: 'john.doe@somewhere.sw',
-=======
-<<<<<<< HEAD
-      mail: 'john.doe@somewhere.sw',
-=======
-      mail: 'john.doe@somewhere.sw'
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
->>>>>>> 2.1.0
-=======
-      mail: 'john.doe@somewhere.sw',
->>>>>>> 2.1.0
     };
     var profile = passportConfigurator._buildUserLdapProfile(userFromLdap, providerConfig.ldap);
 
     // 3 ldap attributes are required in profile: username, emails, id.
     // They should be present even if not defiend in Ldap mapping, set to default Ldap attributes
     assert.equal(profile.username, userFromLdap.cn, '"username" should take value of "cn"');
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 2.1.0
-=======
->>>>>>> 2.1.0
     assert.deepEqual(profile.emails, [{ value: userFromLdap.mail }],
       '"emails" should be comptued from "mail"');
     assert.equal(profile.id, userFromLdap.uid, '"id" should take value of "uid"');
     done();
   });
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-    assert.deepEqual(profile.emails, [{value: userFromLdap.mail}], '"emails" should be comptued from "mail"');
-    assert.equal(profile.id, userFromLdap.uid, '"id" should take value of "uid"');
-    done();
-  });
-
->>>>>>> b392de7... refactor ldap mapping configuration dto be testable and add tests
->>>>>>> 2.1.0
-=======
->>>>>>> 2.1.0
 });
