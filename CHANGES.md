@@ -1,3 +1,55 @@
+2016-03-18, Version 2.1.0
+=========================
+
+ * Update deps (Raymond Feng)
+
+ * Fix email validation for LDAP issue 1963 (Loay Gewily)
+
+ * Fix getting AuthStrategy directly from package when Strategy key is not here (Steve Grosbois)
+
+ * Make `username` field optional in UserIdentity.login method (Vladimir Shushkov)
+
+ * Throw softer error in `local` stragegy when trying to create `accessToken` with `"setAccessToken": true` option. In case when reason is wrong user password. (Vladimir Shushkov)
+
+ * The name of provider can be configured in options. (Clark Wang)
+
+ * Avoid duplicate user identities (Clark Wang)
+
+
+2016-01-11, Version 2.0.0
+=========================
+
+ * Fix version Number Revert to proper version number (Loay Gewily)
+
+ * Use Auto-generated email Using auto-generated email for 3rd party accounts & update version# (Loay Gewily)
+
+ * Enforce email verification for local accounts (Loay Gewily)
+
+
+2015-11-04, Version 1.6.0
+=========================
+
+ * Refer to licenses with a link (Sam Roberts)
+
+ * Use strongloop conventions for licensing (Sam Roberts)
+
+ * feature add failureFlash on link errors (Berkeley Martinez)
+
+ * limit options to post and get and default to get (Jose Garcia)
+
+ * customize callback HTTP method (Jose Garcia)
+
+ * session.redirectTo erase after successful redirect (liba)
+
+ * adding dynamic redirect after successful login (liba)
+
+ * Fixed suspected typo in passport-configurator (Samuel Gaus)
+
+ * Customize cookie for use with subdomain (Pongstr)
+
+ * compatible with wechat's openid (Yorkie Liu)
+
+
 2015-06-24, Version 1.5.0
 =========================
 

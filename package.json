@@ -9,7 +9,7 @@
     "security"
   ],
   "homepage": "https://github.com/strongloop/loopback-component-passport",
-  "version": "1.5.0",
+  "version": "2.1.0",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -27,18 +27,22 @@
     "url": "git://github.com/strongloop/loopback-component-passport.git"
   },
   "dependencies": {
-    "passport": "^0.2.1",
-    "underscore": "^1.8.2"
-  },
-  "peerDependencies": {
-    "loopback": "2.x || 1.x >=1.8.0"
+    "passport": "^0.3.2",
+    "underscore": "^1.8.2",
+    "eslint": "^2.5.3",
+    "eslint-config-loopback": "^1.0.0"
   },
   "devDependencies": {
     "loopback": "^2.14.0",
-    "mocha": "^2.2.0"
+    "mocha": "^2.2.0",
+    "mock-require": "^1.2.1",
+    "sinon": "^1.17.3",
+    "supertest": "^1.2.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha -R spec --timeout 10000 test/*.js"
+    "lint": "eslint .",
+    "test": "./node_modules/.bin/mocha -R spec --timeout 10000 test/*.js",
+    "posttest": "npm run lint"
   },
   "main": "./lib/index.js",
   "license": "Artistic-2.0"
