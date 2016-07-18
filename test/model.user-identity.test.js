@@ -28,13 +28,21 @@ describe('UserIdentity', function() {
     UserIdentity.login('facebook', 'oAuth 2.0',
       { emails: [
         { value: 'foo@bar.com' },
-      ], id: 'f123', username: 'xyz',
+      ], id: 'f123', username: 'xyz', firstName: 'abc', lastName: '123',
       }, { accessToken: 'at1', refreshToken: 'rt1' },
-      { autoLogin: false },
+      {
+        autoLogin: false,
+        profileToUserFields: {
+          firstName: 'firstName',
+          lastName: 'lastName',
+        },
+      },
       function(err, user, identity, token) {
         assert(!err, 'No error should be reported');
         assert.equal(user.username, 'facebook.xyz');
         assert.equal(user.email, 'xyz@loopback.facebook.com');
+        assert.equal(user.firstName, 'abc');
+        assert.equal(user.lastName, '123');
 
         assert.equal(identity.externalId, 'f123');
         assert.equal(identity.provider, 'facebook');
