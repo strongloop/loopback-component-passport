@@ -3,6 +3,7 @@
 // This file is licensed under the Artistic License 2.0.
 // License text available at https://opensource.org/licenses/Artistic-2.0
 
+'use strict';
 var m = require('./init');
 var loopback = require('loopback');
 var assert = require('assert');
@@ -36,16 +37,16 @@ describe('UserCredential', function() {
 
   it('supports linked 3rd party accounts', function(done) {
     UserCredential.link(userId, 'facebook', 'oAuth 2.0',
-      { emails: [
-        { value: 'foo@bar.com' },
+      {emails: [
+        {value: 'foo@bar.com'},
       ], id: 'f123', username: 'xyz',
-      }, { accessToken: 'at1', refreshToken: 'rt1' }, function(err, cred) {
+      }, {accessToken: 'at1', refreshToken: 'rt1'}, function(err, cred) {
         assert(!err, 'No error should be reported');
 
         assert.equal(cred.externalId, 'f123');
         assert.equal(cred.provider, 'facebook');
         assert.equal(cred.authScheme, 'oAuth 2.0');
-        assert.deepEqual(cred.credentials, { accessToken: 'at1', refreshToken: 'rt1' });
+        assert.deepEqual(cred.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
 
         assert.equal(userId, cred.userId);
 
@@ -64,18 +65,18 @@ describe('UserCredential', function() {
       externalId: 'f456',
       provider: 'facebook',
       userId: userId,
-      credentials: { accessToken: 'at1', refreshToken: 'rt1' },
+      credentials: {accessToken: 'at1', refreshToken: 'rt1'},
     }, function(err, cred) {
       UserCredential.link(userId, 'facebook', 'oAuth 2.0',
-        { emails: [
-          { value: 'abc1@facebook.com' },
+        {emails: [
+          {value: 'abc1@facebook.com'},
         ], id: 'f456', username: 'xyz',
-        }, { accessToken: 'at2', refreshToken: 'rt2' }, function(err, cred) {
+        }, {accessToken: 'at2', refreshToken: 'rt2'}, function(err, cred) {
           assert(!err, 'No error should be reported');
 
           assert.equal(cred.externalId, 'f456');
           assert.equal(cred.provider, 'facebook');
-          assert.deepEqual(cred.credentials, { accessToken: 'at2', refreshToken: 'rt2' });
+          assert.deepEqual(cred.credentials, {accessToken: 'at2', refreshToken: 'rt2'});
 
           assert.equal(userId, cred.userId);
 
