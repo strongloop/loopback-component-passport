@@ -28,11 +28,11 @@
   },
   "dependencies": {
     "passport": "^0.3.2",
-    "underscore": "^1.8.2",
-    "eslint": "^2.5.3",
-    "eslint-config-loopback": "^1.0.0"
+    "underscore": "^1.8.2"
   },
   "devDependencies": {
+    "eslint": "^2.5.3",
+    "eslint-config-loopback": "^4.0.0",
     "loopback": "^2.14.0",
     "mocha": "^2.2.0",
     "mock-require": "^1.2.1",

@@ -3,6 +3,7 @@
 // This file is licensed under the Artistic License 2.0.
 // License text available at https://opensource.org/licenses/Artistic-2.0
 
+'use strict';
 var m = require('./init');
 var loopback = require('loopback');
 var assert = require('assert');
@@ -26,11 +27,11 @@ describe('UserIdentity', function() {
 
   it('supports 3rd party login', function(done) {
     UserIdentity.login('facebook', 'oAuth 2.0',
-      { emails: [
-        { value: 'foo@bar.com' },
+      {emails: [
+        {value: 'foo@bar.com'},
       ], id: 'f123', username: 'xyz',
-      }, { accessToken: 'at1', refreshToken: 'rt1' },
-      { autoLogin: false },
+      }, {accessToken: 'at1', refreshToken: 'rt1'},
+      {autoLogin: false},
       function(err, user, identity, token) {
         assert(!err, 'No error should be reported');
         assert.equal(user.username, 'facebook.xyz');
@@ -39,7 +40,7 @@ describe('UserIdentity', function() {
         assert.equal(identity.externalId, 'f123');
         assert.equal(identity.provider, 'facebook');
         assert.equal(identity.authScheme, 'oAuth 2.0');
-        assert.deepEqual(identity.credentials, { accessToken: 'at1', refreshToken: 'rt1' });
+        assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
 
         assert.equal(user.id, identity.userId);
         assert(!token);
@@ -67,10 +68,10 @@ describe('UserIdentity', function() {
         authScheme: 'oAuth 2.0',
       }, function(err, identity) {
         UserIdentity.login('facebook', 'oAuth 2.0',
-          { emails: [
-            { value: 'abc1@facebook.com' },
+          {emails: [
+            {value: 'abc1@facebook.com'},
           ], id: 'f456', username: 'xyz',
-          }, { accessToken: 'at2', refreshToken: 'rt2' }, function(err, user, identity, token) {
+          }, {accessToken: 'at2', refreshToken: 'rt2'}, function(err, user, identity, token) {
             assert(!err, 'No error should be reported');
             assert.equal(user.username, 'facebook.abc');
             assert.equal(user.email, 'abc@facebook.com');
@@ -78,7 +79,7 @@ describe('UserIdentity', function() {
             assert.equal(identity.externalId, 'f456');
             assert.equal(identity.provider, 'facebook');
             assert.equal(identity.authScheme, 'oAuth 2.0');
-            assert.deepEqual(identity.credentials, { accessToken: 'at2', refreshToken: 'rt2' });
+            assert.deepEqual(identity.credentials, {accessToken: 'at2', refreshToken: 'rt2'});
 
             assert.equal(user.id, identity.userId);
 
@@ -103,10 +104,10 @@ describe('UserIdentity', function() {
       password: 'pass',
     }, function(err, user) {
       UserIdentity.login('facebook', 'oAuth 2.0',
-        { emails: [
-          { value: '789@facebook.com' },
+        {emails: [
+          {value: '789@facebook.com'},
         ], id: 'f789', username: 'ttt',
-        }, { accessToken: 'at3', refreshToken: 'rt3' }, function(err, user, identity, token) {
+        }, {accessToken: 'at3', refreshToken: 'rt3'}, function(err, user, identity, token) {
           assert(!err, 'No error should be reported');
           assert.equal(user.username, 'facebook.ttt');
           assert.equal(user.email, 'ttt@loopback.facebook.com');
@@ -114,7 +115,7 @@ describe('UserIdentity', function() {
           assert.equal(identity.externalId, 'f789');
           assert.equal(identity.provider, 'facebook');
           assert.equal(identity.authScheme, 'oAuth 2.0');
-          assert.deepEqual(identity.credentials, { accessToken: 'at3', refreshToken: 'rt3' });
+          assert.deepEqual(identity.credentials, {accessToken: 'at3', refreshToken: 'rt3'});
 
           assert.equal(user.id, identity.userId);
           assert(token);
@@ -132,17 +133,17 @@ describe('UserIdentity', function() {
 
   it('supports 3rd party login with profileToUser option', function(done) {
     UserIdentity.login('facebook', 'oAuth 2.0',
-      { emails: [
-        { value: 'foo@baz.com' },
+      {emails: [
+        {value: 'foo@baz.com'},
       ], id: 'f100', username: 'joy',
-      }, { accessToken: 'at1', refreshToken: 'rt1' }, {
+      }, {accessToken: 'at1', refreshToken: 'rt1'}, {
         profileToUser: function(provider, profile) {
           return {
             username: profile.username + '@facebook',
             email: profile.emails[0].value,
             password: 'sss',
           };
-        } }, function(err, user, identity, token) {
+        }}, function(err, user, identity, token) {
           assert(!err, 'No error should be reported');
           assert.equal(user.username, 'joy@facebook');
           assert.equal(user.email, 'foo@baz.com');
@@ -150,7 +151,7 @@ describe('UserIdentity', function() {
           assert.equal(identity.externalId, 'f100');
           assert.equal(identity.provider, 'facebook');
           assert.equal(identity.authScheme, 'oAuth 2.0');
-          assert.deepEqual(identity.credentials, { accessToken: 'at1', refreshToken: 'rt1' });
+          assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
 
           assert.equal(user.id, identity.userId);
           assert(token);
@@ -166,10 +167,10 @@ describe('UserIdentity', function() {
   });
 
   it('supports ldap login', function(done) {
-    var identity = { emails: [{ value: 'fooldap@bar.com' }], id: 'f123ldap',
-     username: 'xyzldap' };
-    var credentials = { accessToken: 'atldap1', refreshToken: 'rtldap1' };
-    var options = { autoLogin: false };
+    var identity = {emails: [{value: 'fooldap@bar.com'}], id: 'f123ldap',
+     username: 'xyzldap'};
+    var credentials = {accessToken: 'atldap1', refreshToken: 'rtldap1'};
+    var options = {autoLogin: false};
     UserIdentity.login('ldap', 'ldap', identity, credentials, options,
        function(err, user, identity, token) {
          if (err) return done(err);
@@ -179,8 +180,8 @@ describe('UserIdentity', function() {
 
          assert.equal(identity.externalId, 'f123ldap');
          assert.equal(identity.provider, 'ldap');
-         assert.deepEqual(identity.credentials, { accessToken: 'atldap1',
-       refreshToken: 'rtldap1' });
+         assert.deepEqual(identity.credentials, {accessToken: 'atldap1',
+       refreshToken: 'rtldap1'});
 
          assert.equal(user.id, identity.userId);
          assert(!token);
@@ -209,11 +210,11 @@ describe('UserIdentity', function() {
       assert.equal(user.email, 'myLocalTest@local.com');
       assert.equal(user.id, 100);
       assert.equal(user.emailVerified, false);
-      User.login({ username: user.username, password: 'notpass' },
+      User.login({username: user.username, password: 'notpass'},
         function(err, user) {
           assert(err, 'LOGIN_FAILED');
         });
-      User.login({ username: user.username, password: 'pass' },
+      User.login({username: user.username, password: 'pass'},
         function(err, user) {
           assert(err, 'LOGIN_FAILED');
         });
@@ -233,11 +234,11 @@ describe('UserIdentity', function() {
       assert.equal(user.email, 'myLocalTest2@local.com');
       assert.equal(user.id, 101);
       assert.equal(user.emailVerified, true);
-      User.login({ username: user.username, password: 'notpass' },
+      User.login({username: user.username, password: 'notpass'},
         function(err, user) {
           assert(err, 'LOGIN_FAILED');
         });
-      User.login({ username: user.username, password: 'pass' },
+      User.login({username: user.username, password: 'pass'},
         function(err, user) {
           if (err) return done(err);
         });
