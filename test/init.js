@@ -5,19 +5,15 @@
 
 'use strict';
 var loopback = require('loopback');
-module.exports = require('../lib/index');
+var passport = module.exports = require('../lib/index');
 
-// setup default data sources
-loopback.setDefaultDataSourceForType('db', {
-  connector: loopback.Memory,
-});
+var db = loopback.createDataSource('db', {connector: 'memory'});
 
-loopback.setDefaultDataSourceForType('mail', {
-  connector: loopback.Mail,
-  transports: [
-    {type: 'STUB'},
-  ],
-});
+loopback.Application.attachTo(db);
+loopback.User.attachTo(db);
+loopback.AccessToken.attachTo(db);
 
-// auto attach data sources to models
-loopback.autoAttach();
+passport.UserIdentity.attachTo(db);
+passport.UserCredential.attachTo(db);
+passport.ApplicationCredential.attachTo(db);
+
