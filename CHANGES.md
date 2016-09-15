@@ -1,3 +1,27 @@
+2016-09-09, Version 2.2.0
+=========================
+
+ * Update eslint/dependencies (Loay)
+
+ * Add globalization (Candy)
+
+ * Fix linting errors (Loay)
+
+ * Update URLs in CONTRIBUTING.md (#163) (Ryan Graham)
+
+ * update copyright notices and license (Ryan Graham)
+
+ * Return the configured strategy (Bert Casier)
+
+ * update after code review (Bert Casier)
+
+ * refactor tests (Bert Casier)
+
+ * adds error to redirect URL (Bert Casier)
+
+ * Fix bug of headers error and add eslint fix Adding code to fix bug related to headers error sent twice (Loay Gewily)
+
+
 2016-03-18, Version 2.1.0
 =========================
 

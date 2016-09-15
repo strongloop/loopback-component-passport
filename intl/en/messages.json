@@ -1,0 +1,9 @@
+{
+  "578b2bcd9c280030659d3842bb723840": "email is missing from the user profile",
+  "172c11e3d5c779979855ee32b3c70f7c": "{{HMAC}} key is required",
+  "17540dd5530bbd31632b4a8ae6d66e14": "Invalid username/password or email has not been verified",
+  "5a29d5f8c9c46a68663df6ced451f164": "{{req.flash}} is not a function",
+  "6af6fbccb22566c3a89c1e6a0ddbb244": "authentication error",
+  "9cb5cd2573edd84e8de3ac5b2e19ee56": "No user is logged in",
+  "f718846036bbb0ce4f43e2c92c7aacbf": "Failed to create token."
+}

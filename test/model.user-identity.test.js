@@ -10,19 +10,13 @@ var assert = require('assert');
 var UserIdentity = m.UserIdentity;
 var User = loopback.User;
 
-before(function(done) {
-  User.destroyAll(done);
-});
-
 describe('UserIdentity', function() {
-  before(function() {
-    var ds = loopback.createDataSource({
-      connector: 'memory',
-    });
-
-    UserIdentity.attachTo(ds);
-    User.attachTo(ds);
+  before(function setupUserIdentityRelation() {
     UserIdentity.belongsTo(User);
+  });
+
+  beforeEach(function setupDatabase(done) {
+    User.destroyAll(done);
   });
 
   it('supports 3rd party login', function(done) {
@@ -61,18 +55,20 @@ describe('UserIdentity', function() {
       email: 'abc@facebook.com',
       password: 'pass',
     }, function(err, user) {
+      if (err) return done(err);
       UserIdentity.create({
         externalId: 'f456',
         provider: 'facebook',
         userId: user.id,
         authScheme: 'oAuth 2.0',
       }, function(err, identity) {
+        if (err) return done(err);
         UserIdentity.login('facebook', 'oAuth 2.0',
           {emails: [
             {value: 'abc1@facebook.com'},
           ], id: 'f456', username: 'xyz',
           }, {accessToken: 'at2', refreshToken: 'rt2'}, function(err, user, identity, token) {
-            assert(!err, 'No error should be reported');
+            if (err) return done(err);
             assert.equal(user.username, 'facebook.abc');
             assert.equal(user.email, 'abc@facebook.com');
 
@@ -204,11 +200,10 @@ describe('UserIdentity', function() {
       email: 'myLocalTest@local.com',
       password: 'pass',
       emailVerified: 0,
-      id: 100,
     }, function(err, user) {
+      if (err) return done(err);
       assert.equal(user.username, 'myLocalTest');
       assert.equal(user.email, 'myLocalTest@local.com');
-      assert.equal(user.id, 100);
       assert.equal(user.emailVerified, false);
       User.login({username: user.username, password: 'notpass'},
         function(err, user) {
@@ -228,11 +223,10 @@ describe('UserIdentity', function() {
       email: 'myLocalTest2@local.com',
       password: 'pass',
       emailVerified: 1,
-      id: 101,
     }, function(err, user) {
+      if (err) return done(err);
       assert.equal(user.username, 'myLocalTest2');
       assert.equal(user.email, 'myLocalTest2@local.com');
-      assert.equal(user.id, 101);
       assert.equal(user.emailVerified, true);
       User.login({username: user.username, password: 'notpass'},
         function(err, user) {
