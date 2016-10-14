@@ -1,3 +1,21 @@
+2016-10-14, Version 2.3.0
+=========================
+
+ * Update fb profile fields (Loay)
+
+ * Fix login function (Loay)
+
+ * Update translation files - round#2 (Candy)
+
+ * Fixes issue #149 (Alex Plescan)
+
+ * Add translated files (gunjpan)
+
+ * Update deps to loopback 3.0.0 RC (Miroslav Bajtoš)
+
+ * Upgrade to loopback@3.0.0-alpha (Miroslav Bajtoš)
+
+
 2016-09-09, Version 2.2.0
 =========================
 
