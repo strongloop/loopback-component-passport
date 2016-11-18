@@ -10,6 +10,9 @@
   ],
   "homepage": "https://github.com/strongloop/loopback-component-passport",
   "version": "2.3.0",
+  "publishConfig": {
+    "tag": "lts"
+  },
   "engines": {
     "node": ">=0.10.0"
   },
