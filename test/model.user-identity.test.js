@@ -294,4 +294,32 @@ describe('UserIdentity', function() {
       return userInfo;
     }
   });
+
+  describe('using custom generateEmailFormat', function() {
+    it('creates user with customGeneratedEmail', function(done) {
+      var newUser = {id: 'fbu235', username: 'johndoe@exmaple.com'};
+      UserIdentity.login('facebook', 'oAuth 2.0', newUser, {
+        accessToken: 'at3',
+        refreshToken: 'rt3',
+      }, {
+        emailOptional: false,
+        formatEmail: function(provider, profile) {
+          if (/^\S+@\S+$/.test(profile.username)) {
+            return profile.username;
+          } else {
+            return (profile.username || profile.id) + '@loopback.' +
+            (profile.provider || provider) + '.com';
+          }
+        },
+      }, function(err, user, identity, token) {
+        User.findOne({filter: {
+          email: user.email,
+        }}, function(err, res) {
+          if (err) return done(err);
+          assert.equal(res.email, newUser.username);
+          done();
+        });
+      });
+    });
+  });
 });
