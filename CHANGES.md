@@ -1,3 +1,11 @@
+2017-02-02, Version 3.2.0
+=========================
+
+ * Fix engines field back to "node >=4" (Miroslav Bajtoš)
+
+ * Fix indentation error (Miroslav Bajtoš)
+
+
 2017-01-17, Version 3.1.0
 =========================
 
