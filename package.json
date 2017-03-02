@@ -1,6 +1,6 @@
 {
-  "name": "loopback-component-passport",
-  "description": "LoopBack passport integration to support third party logins and account linking",
+  "name": "loopback-component-passport-gatero",
+  "description": "LoopBack passport integration to support third party logins and account linking only for invited users",
   "engines": {
     "node": ">=4"
   },
@@ -11,20 +11,20 @@
     "login",
     "security"
   ],
-  "homepage": "https://github.com/strongloop/loopback-component-passport",
+  "homepage": "https://github.com/gatero/loopback-component-passport",
   "version": "3.2.0",
   "maintainers": [
     {
-      "name": "Raymond Feng",
-      "email": "raymond@strongloop.com"
+      "name": "Daniel Ortega",
+      "email": "me@daniel-ortega.mx"
     }
   ],
   "bugs": {
-    "url": "https://github.com/strongloop/loopback-component-passport/issues"
+    "url": "https://github.com/gatero/loopback-component-passport/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/strongloop/loopback-component-passport.git"
+    "url": "git://github.com/gatero/loopback-component-passport.git"
   },
   "dependencies": {
     "passport": "^0.3.2",
