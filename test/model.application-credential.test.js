@@ -33,12 +33,12 @@ describe('ApplicationCredential', function() {
       done(err);
     });
   });
-
+var port = process.env.PORT || 0;
   it('supports linked 3rd party accounts', function(done) {
     ApplicationCredential.link(appId, 'facebook', 'oAuth 2.0', {
       clientID: 'facebook-client-id-1',
       clientSecret: 'facebook-client-secret-1',
-      callbackURL: 'http://localhost:3000/auth/facebook/callback'},
+      callbackURL: 'http://localhost:' + port + '/auth/facebook/callback'},
       function(err, cred) {
         assert(!err, 'No error should be reported');
 
@@ -47,7 +47,7 @@ describe('ApplicationCredential', function() {
         assert.deepEqual(cred.credentials, {
           clientID: 'facebook-client-id-1',
           clientSecret: 'facebook-client-secret-1',
-          callbackURL: 'http://localhost:3000/auth/facebook/callback'});
+          callbackURL: 'http://localhost:' + port + '/auth/facebook/callback'});
 
         assert.equal(appId, cred.appId);
 
