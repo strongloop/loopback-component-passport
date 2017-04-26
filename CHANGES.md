@@ -1,3 +1,17 @@
+2017-04-26, Version 3.3.0
+=========================
+
+ * Fix style issue (Raymond Feng)
+
+ * Fix the callback signature for openid connect (Raymond Feng)
+
+ * Fix Azure profile id extraction (ashanfernando)
+
+ * Replicate new issue_template from loopback (Siddhi Pai)
+
+ * Replicate issue_template from loopback repo (Siddhi Pai)
+
+
 2017-02-02, Version 3.2.0
 =========================
 
