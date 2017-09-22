@@ -33,11 +33,5 @@
     "principalId": "$owner",
     "permission": "ALLOW"
   }],
-  "relations": {
-    "user": {
-      "type": "belongsTo",
-      "model": "User",
-      "foreignKey": "userId"
-    }
-  }
+  "relations": {}
 }
