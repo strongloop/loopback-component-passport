@@ -171,11 +171,11 @@ describe('UserIdentity', function() {
       ], username: 'joy',
       }, {accessToken: 'at1', refreshToken: 'rt1'}, {
         profileToUser: function(provider, profile) {
+          profile.id = profile.emails[0].value;
           return {
             username: profile.username + '@facebook',
             email: profile.emails[0].value,
             password: 'sss',
-            id: profile.emails[0].value,
           };
         }}, function(err, user, identity, token) {
           assert(!err, 'No error should be reported');
