@@ -7,6 +7,8 @@
 var m = require('./init');
 var loopback = require('loopback');
 var assert = require('assert');
+var SG = require('strong-globalize');
+var g = SG();
 var UserIdentity = m.UserIdentity;
 var User = loopback.User;
 
@@ -162,6 +164,42 @@ describe('UserIdentity', function() {
         });
   });
 
+  it('supports 3rd party login with profileToUser option - manually id set', function(done) {
+    UserIdentity.login('facebook', 'oAuth 2.0',
+      {emails: [
+          {value: 'foo@baz.com'},
+      ], username: 'joy',
+      }, {accessToken: 'at1', refreshToken: 'rt1'}, {
+        profileToUser: function(provider, profile) {
+          return {
+            username: profile.username + '@facebook',
+            email: profile.emails[0].value,
+            password: 'sss',
+            id: profile.emails[0].value,
+          };
+        }}, function(err, user, identity, token) {
+          assert(!err, 'No error should be reported');
+          assert.equal(user.username, 'joy@facebook');
+          assert.equal(user.email, 'foo@baz.com');
+
+          assert.equal(identity.externalId, 'foo@baz.com');
+          assert.equal(identity.provider, 'facebook');
+          assert.equal(identity.authScheme, 'oAuth 2.0');
+          assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
+
+          assert.equal(user.id, identity.userId);
+          assert(token);
+
+          // Follow the belongsTo relation
+          identity.user(function(err, user) {
+            assert(!err, 'No error should be reported');
+            assert.equal(user.username, 'joy@facebook');
+            assert.equal(user.email, 'foo@baz.com');
+            done();
+          });
+        });
+  });
+
   it('supports ldap login', function(done) {
     var identity = {emails: [{value: 'fooldap@bar.com'}], id: 'f123ldap',
      username: 'xyzldap'};
@@ -273,7 +311,7 @@ describe('UserIdentity', function() {
           emailOptional: false,
           profileToUser: customProfileToUser,
         }, function(err, user, identity, token) {
-          assert(err.match(/email is missing/), 'Should report error');
+          assert(err === g.f('email is missing from the user profile'), 'Should report error');
           assert(typeof user === 'undefined', 'Should not return a user instance');
           User.count(function(err, countAfter) {
             if (err) return done(err);
