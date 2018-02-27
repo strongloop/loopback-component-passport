@@ -49,7 +49,7 @@ describe('UserIdentity', function() {
       });
   });
 
-  it('supports 3rd party login with custom profile mapping', function(done) {
+  it('supports 3rd party login with custom field mapping', function(done) {
     UserIdentity.login('linkedin', 'oAuth 2.0',
       {
         emails: [
