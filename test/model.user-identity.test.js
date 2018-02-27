@@ -49,6 +49,57 @@ describe('UserIdentity', function() {
       });
   });
 
+  it('supports 3rd party login with custom profile mapping', function(done) {
+    UserIdentity.login('linkedin', 'oAuth 2.0',
+      {
+        emails: [
+          {value: 'johndoe@foobar.com'},
+        ],
+        id: 'f456',
+        name: {
+          givenName: 'John',
+          familyName: 'Doe',
+        },
+      }, {accessToken: 'at1', refreshToken: 'rt1'},
+      {
+        autoLogin: false,
+        profileMapping: [
+          {
+            providerField: 'name.givenName',
+            userField: 'firstName',
+          },
+          {
+            providerField: 'name.familyName',
+            userField: 'lastName',
+          },
+          {
+            providerField: 'emails[0].value',
+            userField: 'email',
+          },
+        ],
+      },
+      function(err, user, identity, token) {
+        assert(!err, 'No error should be reported');
+        // assert.equal(user.username, 'facebook.xyz');
+        assert.equal(user.email, 'johndoe@foobar.com');
+        assert.equal(user.firstName, 'John');
+        assert.equal(user.lastName, 'Doe');
+        assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
+
+        assert.equal(user.id, identity.userId);
+        assert(!token);
+
+        // Follow the belongsTo relation
+        identity.user(function(err, user) {
+          assert(!err, 'No error should be reported');
+          assert.equal(user.email, 'johndoe@foobar.com');
+          assert.equal(user.firstName, 'John');
+          assert.equal(user.lastName, 'Doe');
+          done();
+        });
+      });
+  });
+
   it('supports 3rd party login if the identity already exists', function(done) {
     User.create({
       username: 'facebook.abc',
