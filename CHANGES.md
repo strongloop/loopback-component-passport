@@ -1,3 +1,11 @@
+2018-03-13, Version 3.6.0
+=========================
+
+ * Active Directory compatibility (Sandrine Caruso)
+
+ * chore(package): Upgrade passport (Berkeley Martinez)
+
+
 2018-03-09, Version 3.5.0
 =========================
 
