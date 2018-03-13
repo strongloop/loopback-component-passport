@@ -52,7 +52,7 @@ describe('PassportConfigurator', function() {
       '"displayName" should take value of "displayName"');
     assert.equal(profile.email, userFromLdap.mail, '"email" should take value of "mail"');
     assert.deepEqual(profile.emails, [{value: userFromLdap.mail}],
-      '"emails" should be comptued from "mail"');
+      '"emails" should be computed from "mail"');
     assert.equal(profile.externalId, userFromLdap.uid, '"externalId" should take value of "uid"');
     done();
   });
@@ -90,6 +90,55 @@ describe('PassportConfigurator', function() {
     assert.deepEqual(profile.emails, [{value: userFromLdap.mail}],
       '"emails" should be comptued from "mail"');
     assert.equal(profile.id, userFromLdap.uid, '"id" should take value of "uid"');
+    done();
+  });
+
+  it('supports user ldap profile configuration with group search',
+  function(done) {
+    var providerConfig = {
+      ldap: {
+        provider: 'ldap',
+        authScheme: 'ldap',
+        module: 'passport-ldapauth',
+        authPath: '/auth/ldap',
+        successRedirect: '/auth/account',
+        failureRedirect: '/ldap',
+        session: true,
+        failureFlash: true,
+        profileAttributesFromLDAP: {
+          login: 'uid',
+          username: 'uid',
+          displayName: 'displayName',
+          email: 'mail',
+          externalId: 'uid',
+          id: 'uid',
+          groups: '_groups',
+        },
+      },
+    };
+
+    /* user's ldap attributes */
+    var userFromLdap = {
+      uid: 'john-doe-uid',
+      displayName: 'John Doe',
+      mail: 'john.doe@somewhere.sw',
+      _groups: [
+        {dn: 'cn=PortalAdmins,o=greenwell', controls: []},
+        {dn: 'cn=ConnectionsAdmins,o=greenwell', controls: []},
+      ],
+    };
+    var profile = passportConfigurator.buildUserLdapProfile(userFromLdap, providerConfig.ldap);
+
+    assert.equal(profile.login, userFromLdap.uid, '"login" should take value of "uid"');
+    assert.equal(profile.username, userFromLdap.uid, '"username" should take value of "uid"');
+    assert.equal(profile.displayName, userFromLdap.displayName,
+      '"displayName" should take value of "displayName"');
+    assert.equal(profile.email, userFromLdap.mail, '"email" should take value of "mail"');
+    assert.deepEqual(profile.emails, [{value: userFromLdap.mail}],
+      '"emails" should be computed from "mail"');
+    assert.equal(profile.externalId, userFromLdap.uid, '"externalId" should take value of "uid"');
+    assert.deepEqual(profile.groups, userFromLdap._groups,
+      '"groups" should be computed from "_groups"');
     done();
   });
 

@@ -1,3 +1,29 @@
+2018-03-13, Version 3.6.0
+=========================
+
+ * Active Directory compatibility (Sandrine Caruso)
+
+ * chore(package): Upgrade passport (Berkeley Martinez)
+
+
+2018-03-09, Version 3.5.0
+=========================
+
+ * added new test (Felix Mueller)
+
+ * Added groupsearch support for LDAP authentication (Felix Mueller)
+
+ * Upd: saml: pass callbackURL as callbackUrl. (C-A de Salaberry)
+
+ * chore: update license (Diana Lau)
+
+ * update globalize string (Diana Lau)
+
+ * Update README.md (Nishil)
+
+ * Add stalebot configuration (Kevin Delisle)
+
+
 2017-08-21, Version 3.4.1
 =========================
 
