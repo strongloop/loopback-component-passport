@@ -1,3 +1,23 @@
+2018-03-22, Version 3.7.0
+=========================
+
+ * merge from master (jackrvaughan)
+
+ * profile to account (jackrvaughan)
+
+ * added test for custom field mapping (jackrvaughan)
+
+ * removed package-lock (jackrvaughan)
+
+ * added profileMapping option (jackrvaughan)
+
+ * Remove unnecessary userObj.id and update test. (Axel Gendillard)
+
+ * Implement specific test, fix assert when the error is in different language (email missing) and fix indent in user-identity. (Axel Gendillard)
+
+ * Fix externalId null when SP return profile with undefined id. (Axel Gendillard)
+
+
 2018-03-13, Version 3.6.0
 =========================
 
