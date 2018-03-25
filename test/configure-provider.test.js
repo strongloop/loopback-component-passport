@@ -45,11 +45,11 @@ describe('configureProvider', function() {
     mock('passport-saml', SamlStrategy);
   });
 
-  it('returns an LDAPStrategy', function() {
+  it('returns a LDAPStrategy', function() {
     testReturnType(LDAPStrategy, 'passport-ldapauth', 'ldap');
   });
 
-  it('returns an LocalStrategy', function() {
+  it('returns a LocalStrategy', function() {
     testReturnType(LocalStrategy, 'passport-local', 'local');
   });
 
