@@ -1,3 +1,15 @@
+2018-03-31, Version 3.8.0
+=========================
+
+ * Update passport-configurator.js (Derek Brown)
+
+ * fix grammar of mocha (Derek Brown)
+
+ * Added SAML test (Derek Brown)
+
+ * modified saml cert behavior (Derek Brown)
+
+
 2018-03-22, Version 3.7.0
 =========================
 
