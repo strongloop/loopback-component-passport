@@ -1,3 +1,13 @@
+2018-05-08, Version 3.8.1
+=========================
+
+ * chore: update CODEOWNERS (Diana Lau)
+
+ * use simple quotes instead of the double quotes (Ghizlane AROUSSI)
+
+ * handle azure-saml profile id (Ghizlane AROUSSI)
+
+
 2018-03-31, Version 3.8.0
 =========================
 
