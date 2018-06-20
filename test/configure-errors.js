@@ -24,7 +24,7 @@ describe('login failure', function() {
   before('configure facebook strategy', function() {
     var passportConfigurator = new PassportConfigurator(app);
 
-    //mock a strategy to work with
+    // mock a strategy to work with
     function PassportFacebookStrategy(options, verify) {};
     PassportFacebookStrategy.prototype.authenticate = function(req, options) {};
     mock('passport-facebook', PassportFacebookStrategy);
@@ -92,7 +92,7 @@ describe('link failure', function() {
       'link': true,
     };
 
-    //passportConfigurator.configureProvider internally uses passport.authorize so stub it
+    // passportConfigurator.configureProvider internally uses passport.authorize so stub it
     var passportAuthorize = sinon.stub(passport, 'authorize', getAuthorizeStubFunction('omg'));
     passportConfigurator.configureProvider('facebook-link', linkOptions);
     passportAuthorize.restore();

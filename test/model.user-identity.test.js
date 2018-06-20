@@ -193,32 +193,32 @@ describe('UserIdentity', function() {
             password: 'sss',
           };
         }}, function(err, user, identity, token) {
+        assert(!err, 'No error should be reported');
+        assert.equal(user.username, 'joy@facebook');
+        assert.equal(user.email, 'foo@baz.com');
+
+        assert.equal(identity.externalId, 'f100');
+        assert.equal(identity.provider, 'facebook');
+        assert.equal(identity.authScheme, 'oAuth 2.0');
+        assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
+
+        assert.equal(user.id, identity.userId);
+        assert(token);
+
+        // Follow the belongsTo relation
+        identity.user(function(err, user) {
           assert(!err, 'No error should be reported');
           assert.equal(user.username, 'joy@facebook');
           assert.equal(user.email, 'foo@baz.com');
-
-          assert.equal(identity.externalId, 'f100');
-          assert.equal(identity.provider, 'facebook');
-          assert.equal(identity.authScheme, 'oAuth 2.0');
-          assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
-
-          assert.equal(user.id, identity.userId);
-          assert(token);
-
-        // Follow the belongsTo relation
-          identity.user(function(err, user) {
-            assert(!err, 'No error should be reported');
-            assert.equal(user.username, 'joy@facebook');
-            assert.equal(user.email, 'foo@baz.com');
-            done();
-          });
+          done();
         });
+      });
   });
 
   it('supports 3rd party login with profileToUser option - manually id set', function(done) {
     UserIdentity.login('facebook', 'oAuth 2.0',
       {emails: [
-          {value: 'foo@baz.com'},
+        {value: 'foo@baz.com'},
       ], username: 'joy',
       }, {accessToken: 'at1', refreshToken: 'rt1'}, {
         profileToUser: function(provider, profile) {
@@ -229,58 +229,58 @@ describe('UserIdentity', function() {
             password: 'sss',
           };
         }}, function(err, user, identity, token) {
+        assert(!err, 'No error should be reported');
+        assert.equal(user.username, 'joy@facebook');
+        assert.equal(user.email, 'foo@baz.com');
+
+        assert.equal(identity.externalId, 'foo@baz.com');
+        assert.equal(identity.provider, 'facebook');
+        assert.equal(identity.authScheme, 'oAuth 2.0');
+        assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
+
+        assert.equal(user.id, identity.userId);
+        assert(token);
+
+        // Follow the belongsTo relation
+        identity.user(function(err, user) {
           assert(!err, 'No error should be reported');
           assert.equal(user.username, 'joy@facebook');
           assert.equal(user.email, 'foo@baz.com');
-
-          assert.equal(identity.externalId, 'foo@baz.com');
-          assert.equal(identity.provider, 'facebook');
-          assert.equal(identity.authScheme, 'oAuth 2.0');
-          assert.deepEqual(identity.credentials, {accessToken: 'at1', refreshToken: 'rt1'});
-
-          assert.equal(user.id, identity.userId);
-          assert(token);
-
-          // Follow the belongsTo relation
-          identity.user(function(err, user) {
-            assert(!err, 'No error should be reported');
-            assert.equal(user.username, 'joy@facebook');
-            assert.equal(user.email, 'foo@baz.com');
-            done();
-          });
+          done();
         });
+      });
   });
 
   it('supports ldap login', function(done) {
     var identity = {emails: [{value: 'fooldap@bar.com'}], id: 'f123ldap',
-     username: 'xyzldap'};
+      username: 'xyzldap'};
     var credentials = {accessToken: 'atldap1', refreshToken: 'rtldap1'};
     var options = {autoLogin: false};
     UserIdentity.login('ldap', 'ldap', identity, credentials, options,
-       function(err, user, identity, token) {
-         if (err) return done(err);
+      function(err, user, identity, token) {
+        if (err) return done(err);
 
-         assert.equal(user.username, 'ldap.xyzldap');
-         assert.equal(user.email, 'fooldap@bar.com');
+        assert.equal(user.username, 'ldap.xyzldap');
+        assert.equal(user.email, 'fooldap@bar.com');
 
-         assert.equal(identity.externalId, 'f123ldap');
-         assert.equal(identity.provider, 'ldap');
-         assert.deepEqual(identity.credentials, {accessToken: 'atldap1',
-       refreshToken: 'rtldap1'});
+        assert.equal(identity.externalId, 'f123ldap');
+        assert.equal(identity.provider, 'ldap');
+        assert.deepEqual(identity.credentials, {accessToken: 'atldap1',
+          refreshToken: 'rtldap1'});
 
-         assert.equal(user.id, identity.userId);
-         assert(!token);
+        assert.equal(user.id, identity.userId);
+        assert(!token);
 
         // Follow the belongsTo relation
-         identity.user(function(err, user) {
-           if (err) return done(err);
+        identity.user(function(err, user) {
+          if (err) return done(err);
 
-           assert.equal(user.username, 'ldap.xyzldap');
-           assert.equal(user.email, 'fooldap@bar.com');
+          assert.equal(user.username, 'ldap.xyzldap');
+          assert.equal(user.email, 'fooldap@bar.com');
 
-           done();
-         });
-       });
+          done();
+        });
+      });
   });
 
   it('supports accessToken option before email verification', function(done) {
