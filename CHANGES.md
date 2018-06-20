@@ -1,3 +1,9 @@
+2018-06-20, Version 3.9.0
+=========================
+
+ * chore: update deps and drop node 4 (Taranveer Virk)
+
+
 2018-05-08, Version 3.8.1
 =========================
 
