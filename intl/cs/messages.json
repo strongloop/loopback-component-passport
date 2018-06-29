@@ -1,0 +1,10 @@
+{
+  "172c11e3d5c779979855ee32b3c70f7c": "Klíč {{HMAC}} je povinný",
+  "17540dd5530bbd31632b4a8ae6d66e14": "Neplatné jméno uživatele/heslo nebo e-mail nebyly ověřeny.",
+  "578b2bcd9c280030659d3842bb723840": "v profilu uživatele chybí e-mail",
+  "5a29d5f8c9c46a68663df6ced451f164": "{{req.flash}} není funkce",
+  "6af6fbccb22566c3a89c1e6a0ddbb244": "chyba ověření",
+  "9cb5cd2573edd84e8de3ac5b2e19ee56": "Není přihlášen žádný uživatel",
+  "f718846036bbb0ce4f43e2c92c7aacbf": "Nezdařilo se vytvořit token."
+}
+
