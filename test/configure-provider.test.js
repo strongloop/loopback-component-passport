@@ -21,6 +21,7 @@ describe('configureProvider', function() {
   function OpenIDStrategy(options, verify) {};
   function OpenIDConnectStrategy(options, verify) {};
   function SamlStrategy(options, verify) {};
+  function CustomStrategy(options, verify) {};
 
   function testReturnType(Strategy, module, authScheme) {
     var options = {
@@ -43,6 +44,7 @@ describe('configureProvider', function() {
     mock('passport-openid', OpenIDStrategy);
     mock('passport-openidconnect', OpenIDConnectStrategy);
     mock('passport-saml', SamlStrategy);
+    mock('passport-custom', CustomStrategy);
   });
 
   it('returns a LDAPStrategy', function() {
@@ -71,5 +73,9 @@ describe('configureProvider', function() {
 
   it('returns a SamlStrategy', function() {
     testReturnType(SamlStrategy, 'passport-saml', 'saml');
+  });
+
+  it('returns a CustomStrategy', function() {
+    testReturnType(CustomStrategy, 'passport-custom', 'custom');
   });
 });
