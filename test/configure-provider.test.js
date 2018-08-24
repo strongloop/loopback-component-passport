@@ -29,7 +29,6 @@ describe('configureProvider', function() {
       'module': module,
     };
     var strategy = passportConfigurator.configureProvider(authScheme + 'ProviderName', options);
-    console.log(strategy);
     assert(strategy instanceof Strategy);
   }
 
