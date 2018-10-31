@@ -147,59 +147,48 @@ describe('UserIdentity', function() {
   });
 
   it('supports 3rd party login with different providers but same externalId', function(done) {
-    User.create(
-      {
-        username: 'facebook.abc',
-        email: 'abc@facebook.com',
-        password: 'pass',
-      },
-      function(err, user) {
+    User.create({
+      username: 'facebook.abc',
+      email: 'abc@facebook.com',
+      password: 'pass',
+    }, function(err, user) {
+      if (err) return done(err);
+      UserIdentity.create({
+        externalId: 'f456',
+        provider: 'facebook',
+        userId: user.id,
+        authScheme: 'oAuth 2.0',
+      }, function(err, identity) {
         if (err) return done(err);
-        UserIdentity.create(
-          {
-            externalId: 'f456',
-            provider: 'facebook',
-            userId: user.id,
-            authScheme: 'oAuth 2.0',
+        UserIdentity.login('new-provider', 'oAuth 2.0',
+          {emails: [
+            {value: 'xyz@newprovider.com'},
+          ], id: 'f456', username: 'xyz',
           },
-          function(err, identity) {
+          {accessToken: 'at2', refreshToken: 'rt2'}, function(err, user, identity, token) {
             if (err) return done(err);
-            UserIdentity.login(
-              'new-provider',
-              'oAuth 2.0',
-              {
-                emails: [{value: 'xyz@newprovider.com'}],
-                id: 'f456',
-                username: 'xyz',
-              },
-              {accessToken: 'at2', refreshToken: 'rt2'},
-              function(err, user, identity, token) {
-                if (err) return done(err);
-                assert.equal(user.username, 'new-provider.xyz');
-                assert.equal(user.email, 'xyz@loopback.new-provider.com');
+            assert.equal(user.username, 'new-provider.xyz');
+            assert.equal(user.email, 'xyz@loopback.new-provider.com');
 
-                assert.equal(identity.externalId, 'f456');
-                assert.equal(identity.provider, 'new-provider');
-                assert.equal(identity.authScheme, 'oAuth 2.0');
-                assert.deepEqual(identity.credentials, {accessToken: 'at2', refreshToken: 'rt2'});
+            assert.equal(identity.externalId, 'f456');
+            assert.equal(identity.provider, 'new-provider');
+            assert.equal(identity.authScheme, 'oAuth 2.0');
+            assert.deepEqual(identity.credentials, {accessToken: 'at2', refreshToken: 'rt2'});
 
-                assert.equal(user.id, identity.userId);
+            assert.equal(user.id, identity.userId);
 
-                assert(token);
+            assert(token);
 
-                // Follow the belongsTo relation
-                identity.user(function(err, user) {
-                  assert(!err, 'No error should be reported');
-                  assert.equal(user.username, 'new-provider.xyz');
-                  assert.equal(user.email, 'xyz@loopback.new-provider.com');
-                  done();
-                });
-              }
-            );
-          }
-        );
-      }
-    );
+            // Follow the belongsTo relation
+            identity.user(function(err, user) {
+              assert(!err, 'No error should be reported');
+              assert.equal(user.username, 'new-provider.xyz');
+              assert.equal(user.email, 'xyz@loopback.new-provider.com');
+              done();
+            });
+          });
+      });
+    });
   });
 
   it('supports 3rd party login if user account already exists', function(done) {
