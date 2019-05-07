@@ -47,5 +47,6 @@
     "posttest": "npm run lint"
   },
   "main": "./lib/index.js",
-  "license": "Artistic-2.0"
+  "license": "Artistic-2.0",
+  "author": "IBM Corp."
 }

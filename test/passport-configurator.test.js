@@ -1,3 +1,8 @@
+// Copyright IBM Corp. 2017,2018. All Rights Reserved.
+// Node module: loopback-component-passport
+// This file is licensed under the Artistic License 2.0.
+// License text available at https://opensource.org/licenses/Artistic-2.0
+
 'use strict';
 
 var m = require('./init');
