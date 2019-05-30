@@ -147,6 +147,55 @@ describe('PassportConfigurator', function() {
       done();
     });
 
+  it('supports user ldap profile configuration with group search for microsoft active directory',
+    function(done) {
+      var providerConfig = {
+        ldap: {
+          provider: 'ldap',
+          authScheme: 'ldap',
+          module: 'passport-ldapauth',
+          authPath: '/auth/ldap',
+          successRedirect: '/auth/account',
+          failureRedirect: '/ldap',
+          session: true,
+          failureFlash: true,
+          profileAttributesFromLDAP: {
+            login: 'uid',
+            username: 'uid',
+            displayName: 'displayName',
+            email: 'mail',
+            externalId: 'uid',
+            id: 'uid',
+            groups: 'memberOf',
+          },
+        },
+      };
+
+      /* user's ldap attributes */
+      var userFromLdap = {
+        uid: 'john-doe-uid',
+        displayName: 'John Doe',
+        mail: 'john.doe@somewhere.sw',
+        memberOf: [
+          {dn: 'cn=PortalAdmins,o=greenwell', controls: []},
+          {dn: 'cn=ConnectionsAdmins,o=greenwell', controls: []},
+        ],
+      };
+      var profile = passportConfigurator.buildUserLdapProfile(userFromLdap, providerConfig.ldap);
+
+      assert.equal(profile.login, userFromLdap.uid, '"login" should take value of "uid"');
+      assert.equal(profile.username, userFromLdap.uid, '"username" should take value of "uid"');
+      assert.equal(profile.displayName, userFromLdap.displayName,
+        '"displayName" should take value of "displayName"');
+      assert.equal(profile.email, userFromLdap.mail, '"email" should take value of "mail"');
+      assert.deepEqual(profile.emails, [{value: userFromLdap.mail}],
+        '"emails" should be computed from "mail"');
+      assert.equal(profile.externalId, userFromLdap.uid, '"externalId" should take value of "uid"');
+      assert.deepEqual(profile.groups, userFromLdap.memberOf,
+        '"groups" should be computed from "memberOf"');
+      done();
+    });
+
   function setupModels() {
     var ds = loopback.createDataSource({
       connector: 'memory',
