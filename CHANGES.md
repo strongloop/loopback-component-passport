@@ -1,3 +1,11 @@
+2019-05-30, Version 3.11.0
+==========================
+
+ * #267 get all groups for ms-ad (Bogdan, Tyler)
+
+ * chore: update copyrights years (Agnes Lin)
+
+
 2018-07-09, Version 3.10.0
 ==========================
 
