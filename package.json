@@ -2,7 +2,7 @@
   "name": "loopback-component-passport",
   "description": "LoopBack passport integration to support third party logins and account linking",
   "engines": {
-    "node": ">=6"
+    "node": ">=8.9"
   },
   "keywords": [
     "StrongLoop",
