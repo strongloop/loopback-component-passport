@@ -1,3 +1,13 @@
+2020-03-06, Version 3.12.0
+==========================
+
+ * Update LTS status in README (Miroslav Bajtoš)
+
+ * chore: improve issue and PR templates (Nora)
+
+ * drop Node.js 6 support (Nora)
+
+
 2019-05-30, Version 3.11.0
 ==========================
 
