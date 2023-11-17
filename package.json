@@ -12,7 +12,7 @@
     "security"
   ],
   "homepage": "https://github.com/strongloop/loopback-component-passport",
-  "version": "3.12.0",
+  "version": "3.12.0+diekeure.1",
   "maintainers": [
     {
       "name": "Raymond Feng",
