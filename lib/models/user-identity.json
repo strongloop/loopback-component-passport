@@ -5,6 +5,9 @@
   "indexes": {
     "modified": {
       "modified": 1
+    },
+    "userId": {
+      "userId": 1
     }
   },
   "properties": {
@@ -29,6 +32,10 @@
     "created": "Date",
     "modified": {
       "type": "Date"
+    },
+    "userId": {
+      "type": "String",
+      "required": true
     }
   },
   "acls": [
